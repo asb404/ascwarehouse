@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+    <section class="text-gray-600 body-font">
+        <form action="http://localhost:7874/otp" method="POST">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-black">Antara's Cold Storage Warehouse Varification </h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-900">Enter the One Time Otp Send to User Registered Mail Id</p>
+          </div>
+          <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+              <label for="otp" class="leading-7 text-sm text-black">Otp</label>
+              <input type="text" id="otp" name="otp" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-black focus:bg-white focus:ring-2 focus:ring-black text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Verify</button>
+          </div>
+        </div>
+    </div>
+    </form>
+
+      </section>
+</body>
+</html>

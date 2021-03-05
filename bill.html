@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div id='mydiv'></div>
+    <header class="text-gray-500 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg class="fill-current text-green-500 inline-block h-12 w-12" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20">
+          <path
+            d="M18 9.87V20H2V9.87a4.25 4.25 0 0 0 3-.38V14h10V9.5a4.26 4.26 0 0 0 3 .37zM3 0h4l-.67 6.03A3.43 3.43 0 0 1 3 9C1.34 9 .42 7.73.95 6.15L3 0zm5 0h4l.7 6.3c.17 1.5-.91 2.7-2.42 2.7h-.56A2.38 2.38 0 0 1 7.3 6.3L8 0zm5 0h4l2.05 6.15C19.58 7.73 18.65 9 17 9a3.42 3.42 0 0 1-3.33-2.97L13 0z" />
+        </svg>
+        <span class="ml-3 text-xl ">ASC_Warehouse</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-white" href="custable">Customer</a>
+        <a class="mr-5 hover:text-white" href="protable">Product</a>
+        <a class="mr-5 hover:text-white" href="waretable">WareSegment</a>
+        <a class="mr-5 hover:text-white" href="emptable">WareEmployee</a>
+      </nav>
+      <a class="flex  text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+        href="login" href="login">Log Out</a>
+    </div>
+  </header>
+  <div class="p-4 flex">
+    <h1 class="text-3xl  md:text-center text-black ">
+      Generate Invoice For Customer
+    </h1>
+  </div>
+  <div class="flex mb-8 justify-between">
+    <div class="w-2/4">
+        
+<div class="mb-2 md:mb-1 md:flex items-center">
+            <label class="w-32 text-gray-800 block font-bold text-sm uppercase tracking-wide">Cusid</label>
+            <span class="mr-4 inline-block hidden md:block">:</span>
+            <div class="flex-1">
+    <form action="http://localhost:7874/voiceinput" method="POST">
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-48 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 " type="number" for="cusid" name="cusid" id="cusid" >
+  </div>
+  
+  <button type="submit" class="inline-flex justify-center py-2 px-2 border border-transparent input_submit1 shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" >Generate</button>
+</div>
+</form>
+
+</div>
+  </div>
+<div>
+    <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent input_submit1 shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="btn" >View Table</button>
+    <br>
+    <br>
+    <table x-ref="printTemplate" class="text-center w-full " >
+      <thead class="bg-green-500 flex text-center text-black w-full" style="border-top-left-radius:20px;border-top-right-radius:20px ;">
+        <tr class="flex w-full ">
+          <th class="p-4 w-1/4">Proid</th>
+          <th class="p-4 w-1/4">Product Name</th>
+          <th class="p-4 w-1/4">Quantity</th>
+          <th class="p-4 w-1/4">Period(in Months) </th>
+          <th class="p-4 w-1/4">Rent</th>       
+        </tr>
+      </thead>
+      <tbody id="mytable" class="bg-grey-light flex flex-col items-center justify-between  w-full "  >
+  
+      </tbody>
+    </table>
+ 
+  </div>
+  <br>
+
+</div>
+
+<button onclick="printDiv('mydiv')">fhgsdadh</button>
+<button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent input_submit1 shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="go">Amount</button>
+    <div class="py-2 ml-auto mt-5 w-full sm:w-2/4 lg:w-1/4" id="mydiv"></div>
+<script>
+btn.addEventListener("click", function () {
+            var ourrequest = new XMLHttpRequest();
+            ourrequest.open('GET', 'http://localhost:7874/ind');
+            ourrequest.onload = function () {
+              var ourdata = JSON.parse(ourrequest.responseText);
+              buildtable(ourdata);
+            };
+            ourrequest.send();
+          });
+          
+          function buildtable(data) {
+        var table = document.getElementById('mytable');
+       
+        for (var i = 0; i < data.length; i++) {
+          var row = `<tr class="flex w-full  text-black lg:hover:bg-gray-300">
+            <td class="p-4 w-1/4">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">seg_no</span>
+            ${data[i].proid}
+          </td>
+          <td class="p-4 w-1/4">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">no_of_chamber</span>
+              ${data[i].type}
+          </td>
+         
+          <td class="p-4 w-1/4">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">no_of_chamber</span>
+              ${data[i].quantity}
+          </td>
+          <td class="p-4 w-1/4">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">no_of_chamber</span>
+              ${data[i].timep}
+          </td>
+          <td class="p-4 w-1/4">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">no_of_chamber</span>
+              ${data[i].rent}
+          </td>
+                     
+        </tr>`
+          table.innerHTML += row
+        }
+       
+      }
+
+      go.addEventListener("click", function () {
+            var ourrequest = new XMLHttpRequest();
+            ourrequest.open('GET', 'http://localhost:7874/amt');
+            ourrequest.onload = function () {
+              var ourdata = JSON.parse(ourrequest.responseText);
+              giveamount(ourdata);
+            };
+            ourrequest.send();
+          });
+
+          function giveamount(data) {
+            var indiv=document.getElementById('mydiv');
+            for (var i = 0; i < data.length; i++) {
+            var amt=` <div class="flex justify-between mb-3">
+				<div class="text-gray-800 text-right flex-1">Total incl. GST</div>
+				<div class="text-right w-40">
+					<div class="text-gray-800 font-medium" x-html="${data[i].amount}"></div>
+				</div>
+			</div>
+			<div class="flex justify-between mb-4">
+				<div class="text-sm text-gray-600 text-right flex-1">GST(18%) incl. in Total</div>
+				<div class="text-right w-40">
+					<div class="text-sm text-gray-600" x-html="${data[i].amount}"></div>
+				</div>
+			</div>
+		
+			<div class="py-2 border-t border-b">
+				<div class="flex justify-between">
+					<div class="text-xl text-gray-600 text-right flex-1">Amount due</div>
+					<div class="text-right w-40">
+						<div class="text-xl text-gray-800 font-bold" x-html="${data[i].amount}"></div>
+					</div>
+        </div>
+        </div> `
+     indiv.innerHTML+=amt;
+      }
+          }
+          function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+		}
+
+</script>
+</body>
+</html>
