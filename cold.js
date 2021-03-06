@@ -15,10 +15,8 @@ const path = require("path");
 var urlencodedParser = bodyparser.urlencoded({ extended: false })
 app.use(urlencodedParser);
 const fs = require("fs");
-const port = 7874;
+const port = process.env.PORT || 7874;
 var pg = require('pg');
-
-
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
